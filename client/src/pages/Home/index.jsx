@@ -5,6 +5,8 @@ import "./index.scss";
 import Header from "../../components/Header";
 import Categories from "../../components/Categories";
 import NewArrivals from "../../components/NewArrivals";
+import BestSellers from "../../components/BestSellers";
+import LatestBlogs from "../../components/LatestBlogs";
 const Home = () => {
   return (
     <>
@@ -15,6 +17,8 @@ const Home = () => {
       <Header />
       <Categories />
       <NewArrivals />
+      <BestSellers/>
+      <LatestBlogs/>
     </>
   );
 };

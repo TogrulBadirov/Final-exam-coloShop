@@ -145,6 +145,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="list">
+                <NavLink to={"/Basket"} className={"link"}>
+                  Basket
+                  <span className="count">{basket.reduce((total,item)=>total+item.count,0)}</span>
+                </NavLink>
+              </li>
+              <li className="list">
                 <NavLink to={"/AddPage"} className={"link"}>
                   AddPage
                 </NavLink>

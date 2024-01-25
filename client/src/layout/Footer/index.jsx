@@ -1,8 +1,8 @@
 import React from 'react'
-
+import "./index.scss"
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <p>©2018 All Rights Reserverd. This template is made with  by Colorlib</p>
   )
 }
 

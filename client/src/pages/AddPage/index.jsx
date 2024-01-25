@@ -9,6 +9,7 @@ import * as Yup from "yup";
 const AddPage = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [sortValue, setSortValue] = useState(null)
   const [searchValue, setSearchValue] = useState('')
   const getAllProducts = async () => {
     const resp = await axios("http://localhost:3000/");
@@ -38,6 +39,14 @@ const AddPage = () => {
       console.log("Can't Delete Product");
     }
   };
+
+  const toLower = (item)=>{
+    if (typeof item === String) {
+        return item.toLocaleLowerCase()
+    }
+    return item
+  }
+
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -152,7 +161,16 @@ const AddPage = () => {
       </section>
       <section id="ProductTable">
         <div className="container">
-          <input type="text" onChange={(e)=>setSearchValue(e.target.value)} />
+         <div>
+         <input placeholder="Search" type="text" className="form-control" onChange={(e)=>setSearchValue(e.target.value)} />
+         </div>
+          <div className="buttons">
+          <button className="btn btn-dark" onClick={()=>setSortValue({property:"title",asc:true})}>Title: A-Z</button>
+          <button className="btn btn-dark" onClick={()=>setSortValue({property:"title",asc:false})}>Title: A-Z</button>
+          <button className="btn btn-dark" onClick={()=>setSortValue({property:"price",asc:true})}>Price: Increase</button>
+          <button className="btn btn-dark" onClick={()=>setSortValue({property:"price",asc:false})}>Price: Decrease</button>
+          <button className="btn btn-dark" onClick={()=>setSortValue(null)}>Default</button>
+          </div>
           <table className="table table-dark">
             <thead>
               <tr>
@@ -168,7 +186,15 @@ const AddPage = () => {
               {products && products
               .filter(x=> x.title.toLowerCase().trim().includes(searchValue.toLocaleLowerCase().trim()))
               .sort((a,b)=>{
-                
+                if (sortValue && sortValue.asc === true) {
+                  return ( toLower(a[sortValue.property]) > toLower(b[sortValue.property])) ? 1 : ((toLower(b[sortValue.property]) > toLower(a[sortValue.property])) ? -1 : 0)
+                }
+                else if (sortValue && sortValue.asc === false) {
+                  return ( toLower(a[sortValue.property]) < toLower(b[sortValue.property])) ? 1 : ((toLower(b[sortValue.property]) < toLower(a[sortValue.property])) ? -1 : 0)
+                }
+                else{
+                  return 0
+                }
               })
               .map(item=>(
                 <tr key={item._id}>

@@ -219,3 +219,30 @@ nav{
         transform: translateY(0px);
     }
 }
+
+
+@media screen and (max-width:352px) {
+    nav{
+        
+        #mobile-nav{
+            .icons{
+              
+            }
+            .icon-btn{
+                display: none !important;
+            }
+        }
+    }
+}
+@media screen and (max-width:452px) {
+    nav{
+        
+        #mobile-nav{
+            #side-nav{
+                &.active{
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}
