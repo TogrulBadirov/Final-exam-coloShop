@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Toaster } from 'react-hot-toast';
-import "./index.scss"
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import "./index.scss";
+
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 const AddPage = () => {
+  const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState('')
+  const getAllProducts = async () => {
+    const resp = await axios("http://localhost:3000/");
+    setProducts(resp.data);
+    setLoading(false);
+  };
+
+  const handlePost = async (value) => {
+    try {
+      const resp = await axios.post("http://localhost:3000/", value);
+      toast.success('Product Successfully Created!')
+    getAllProducts();
+    } catch (error) {
+      console.log("Can't Post Product");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const resp = await axios.delete(`http://localhost:3000/${id}`);
+      toast('Product Successfully Deleted!', {
+        icon: 'ℹ️',
+      });
+
+    getAllProducts();
+    } catch (error) {
+      console.log("Can't Delete Product");
+    }
+  };
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
   return (
     <>
       <Toaster position="bottom-left" reverseOrder={false} />
@@ -11,7 +50,132 @@ const AddPage = () => {
       </Helmet>
       <section id="AddPage">
         <div className="container">
+          <Formik
+            initialValues={{
+              image: "",
+              title: "",
+              info: "",
+              price: "",
+              discount: "",
+            }}
+            validationSchema={Yup.object({
+              image: Yup.string()
+                .matches(/^[A-Za-z]/, "Must Start With Letter")
+                .matches(
+                  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+                  "Must Be URL!"
+                )
+                .required("Required"),
+              title: Yup.string()
+                .matches(/^[A-Za-z]/, "Must Start With Letter")
+                .max(50, "Must be 50 characters or less")
+                .required("Required"),
+              info: Yup.string()
+                .matches(/^[A-Za-z]/, "Must Start With Letter")
+                .required("Required"),
+              price: Yup.number()
+                .min(1, "Must be at least 1 !")
+                .required("Required"),
+              discount: Yup.number()
+                .min(1, "Must be at least 1 !")
+                .max(99, "Must be 99 or less!")
+                .required("Required"),
+            })}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                handlePost(values);
+                setSubmitting(false);
+              }, 400);
+            }}
+          >
+            <Form className="add-form">
+              <h2>Add Form</h2>
 
+              <div>
+                <label htmlFor="image">Image</label>
+                <Field className="form-control" name="image" type="text" />
+                <div className="error">
+                  <ErrorMessage name="image" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="title">Title</label>
+                <Field className="form-control" name="title" type="text" />
+                <div className="error">
+                  <ErrorMessage name="title" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="info">Info</label>
+                <Field className="form-control" name="info" type="text" />
+                <div className="error">
+                  <ErrorMessage name="info" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="price">Price</label>
+                <Field
+                  className="form-control"
+                  name="price"
+                  type="number"
+                  min={1}
+                />
+                <div className="error">
+                  <ErrorMessage name="price" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="discount">Discount</label>
+                <Field
+                  className="form-control"
+                  name="discount"
+                  type="number"
+                  min={1}
+                  max={99}
+                />
+                <div className="error">
+                  <ErrorMessage name="discount" />
+                </div>
+              </div>
+
+              <button className="btn btn-primary" type="submit">
+                Submit
+              </button>
+            </Form>
+          </Formik>
+        </div>
+      </section>
+      <section id="ProductTable">
+        <div className="container">
+          <table className="table table-dark">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Info</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {products && products.map(item=>(
+                <tr key={item._id}>
+                <td><img src="{item.image}" alt="" /></td>
+                <td>{item.title}</td>
+                <td>{item.info}</td>
+                <td>{item.price}</td>
+                <td>{item.discount}</td>
+                <td><button onClick={()=>handleDelete(item._id)} className="btn btn-danger">Delete</button></td>
+              </tr>
+              ))}
+              
+            </tbody>
+          </table>
         </div>
       </section>
     </>

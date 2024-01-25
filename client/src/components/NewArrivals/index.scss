@@ -1,0 +1,152 @@
+#NewArrivals{
+    padding: 50px 0;
+    .container{
+        .section-header{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+            .heading{
+                text-align: center;
+                font-size: 40px;
+                font-weight: 600;
+
+            }
+            .red-bar{
+                width: 70px;
+                height: 5px;
+                background-color: #FE4C50;
+                margin-top: 20px;
+            }
+        }
+        .filter-buttons{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            .filter-btn{
+                background-color: #fff;
+                color: #000;
+                border: 1px solid #e2e2e2;
+                margin: 0 5px;
+                padding: 10px 35px;
+                border-radius: 3px;
+                font-weight: 600;
+                transition: 300ms;
+                margin: 10px;
+                &.active{
+                    background-color: #FE4C50;
+                    color: #fff;
+                    border: none;
+                    margin: 0 5px;
+                    padding: 10px 35px;
+                    border-radius: 3px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .products{
+            margin-top: 50px;
+            .row{
+                justify-content: center;
+                
+                .product{
+                    max-width: 250px;
+                    border: 1px solid #e9e9e9;
+                    padding: 0;
+                    &:hover .add-to-basket{
+                        opacity: 1;
+                    }
+                    &:hover{
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    }
+                    .image{
+                        position: relative;
+                        img{
+                            max-width: 100%;
+                        }
+                        .discount{
+                            position: absolute;
+                            top: 5%;
+                            right: 5%;
+                            background-color: #FE4C50;
+                            padding: 3px 10px;
+                            border-radius: 3px;
+                            color: #fff;
+                            font-size: 13px;
+                            font-weight: 600;
+                        }
+                        .favorite{
+                            position: absolute;
+                            top: 5%;
+                            left: 5%;
+                            padding: 3px 10px;
+                            border-radius: 3px;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            color: #fff;
+                            font-size: 13px;
+                            font-weight: 600;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: 300ms ease-in-out;
+                            &:hover{
+                                background-color: #e7e7e7;
+                                .fav-btn{
+                                    color: #FE4C50;
+                                }
+                            }
+                            .fav-btn{
+                                background-color: transparent;
+                                border: none;
+                                font-size: 18px;
+                                color: #b1b1b1;
+                                
+                            }
+                        }
+                    }
+                    .content{
+                        .product-title{
+                            font-size: 16px;
+                            font-weight: 600;
+                            text-align: center;
+                            padding: 0 10px;
+                        }
+                        .new-price{
+                            text-align: center;
+                            color: #FE4C55;
+                            font-weight: 700;
+                            .old-price{
+                                color: #B5BCDB;
+                                text-decoration: line-through;
+                            }
+                        }
+                    }
+                    .add-to-basket{
+                        width: 100%;
+                        margin-top: 20px;
+                        opacity: 0;
+                        transition: 350ms ease-in-out;
+                        .add-to-cart-btn{
+                            width: 100%;
+                            padding: 10px 0;
+                            color: #fff;
+                            background-color: #FE4C50;
+                            border: none;
+                            font-size: 13px;
+                            font-weight: 700;
+                            transition: 300ms ease-in-out;
+                            &:hover{
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

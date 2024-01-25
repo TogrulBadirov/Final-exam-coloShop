@@ -21,6 +21,10 @@
                         left: 50%;
                         font-size: 26px;
                         font-weight: 700;
+                        transition: 300ms ease;
+                        &:hover{
+                            color: #777;
+                        }
                     }
                 }
             }
