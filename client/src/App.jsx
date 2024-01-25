@@ -19,7 +19,7 @@ function App() {
           <Route path="/Basket" element={<Basket />} />
           <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="/AddPage" element={<AddPage />} />
-          <Route path="/Detail" element={<Detail />} />
+          <Route path="/Detail/:id" element={<Detail />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

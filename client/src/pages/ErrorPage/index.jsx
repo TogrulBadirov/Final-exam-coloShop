@@ -5,7 +5,7 @@ import "./index.scss"
 const ErrorPage = () => {
   return (
     <>
-      <Toaster position="bottom-left" reverseOrder={false} />
+      <Toaster  />
       <Helmet>
         <title>ErrorPage</title>
       </Helmet>

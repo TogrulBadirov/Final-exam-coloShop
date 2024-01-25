@@ -44,7 +44,7 @@ const AddPage = () => {
 
   return (
     <>
-      <Toaster position="bottom-left" reverseOrder={false} />
+      <Toaster  />
       <Helmet>
         <title>AddPage</title>
       </Helmet>
@@ -77,13 +77,14 @@ const AddPage = () => {
                 .min(1, "Must be at least 1 !")
                 .required("Required"),
               discount: Yup.number()
-                .min(1, "Must be at least 1 !")
+                .min(0, "Must be at least 0 !")
                 .max(99, "Must be 99 or less!")
                 .required("Required"),
             })}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               setTimeout(() => {
                 handlePost(values);
+                resetForm()
                 setSubmitting(false);
               }, 400);
             }}
@@ -134,7 +135,7 @@ const AddPage = () => {
                   className="form-control"
                   name="discount"
                   type="number"
-                  min={1}
+                  min={0}
                   max={99}
                 />
                 <div className="error">
@@ -151,6 +152,7 @@ const AddPage = () => {
       </section>
       <section id="ProductTable">
         <div className="container">
+          <input type="text" onChange={(e)=>setSearchValue(e.target.value)} />
           <table className="table table-dark">
             <thead>
               <tr>
@@ -163,9 +165,14 @@ const AddPage = () => {
               </tr>
             </thead>
             <tbody>
-              {products && products.map(item=>(
+              {products && products
+              .filter(x=> x.title.toLowerCase().trim().includes(searchValue.toLocaleLowerCase().trim()))
+              .sort((a,b)=>{
+                
+              })
+              .map(item=>(
                 <tr key={item._id}>
-                <td><img src="{item.image}" alt="" /></td>
+                <td><img src={item.image} alt="" /></td>
                 <td>{item.title}</td>
                 <td>{item.info}</td>
                 <td>{item.price}</td>

@@ -1,6 +1,14 @@
 nav{
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 100%;
+    z-index: 10;
+    &.active{
+        position: fixed;
+        width: 100%;
+        animation-name: scrollNav;
+        animation-duration: 400ms;
+    }
     #desktop-nav{
         .container{
             display: flex;
@@ -28,6 +36,19 @@ nav{
                             padding: 30px 10px;
                             font-size: 14px;
                             font-weight: 500;
+                            .count{
+                                width: 20px;
+                                height: 20px;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-radius: 50%;
+                                color: #fff;
+                                background-color: #ff0000;
+                                display: inline-flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-left: 5px;
+                            }
                         }
                     }
                 }
@@ -156,6 +177,19 @@ nav{
                             font-size: 14px;
                             font-weight: 500;
                             border-bottom: 1px solid #B5AEC4;
+                            .count{
+                                width: 20px;
+                                height: 20px;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-radius: 50%;
+                                color: #fff;
+                                background-color: #ff0000;
+                                display: inline-flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-left: 5px;
+                            }
                         }
                     }
                 }
@@ -174,5 +208,14 @@ nav{
         #mobile-nav{
             display: block;
         }
+    }
+}
+
+@keyframes scrollNav {
+    from{
+        transform: translateY(-100px);
+    }
+    to{
+        transform: translateY(0px);
     }
 }
