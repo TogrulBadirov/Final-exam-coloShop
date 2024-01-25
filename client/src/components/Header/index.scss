@@ -1,0 +1,37 @@
+#Header{
+    background-image: url("https://preview.colorlib.com/theme/coloshop/images/slider_1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 85vh;
+    .container{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 100%;
+        .content{
+            .header-paragraph{
+                font-weight: 600;
+            }
+            .main-header{
+                font-size: clamp(2.1875rem, -0.875rem + 7vw, 4.375rem);
+                max-width: 600px;
+                font-weight: 400;
+                margin-bottom: 20px;
+            }
+            .header-btn{
+                background-color: #FE4C50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                font-size: 15px;
+                font-weight: 600;
+                padding: 10px 35px;
+                transition: 300ms ease;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}

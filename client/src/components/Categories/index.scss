@@ -1,0 +1,30 @@
+#Categories {
+    padding: 50px 0;
+    .container{
+        .row{
+            justify-content: center;
+            .category{
+                max-width: 400px;
+                margin-top: 40px;
+                .image{
+                    position: relative;
+                    img{
+                        max-width: 100%;
+                        
+                    }
+                    .category-name{
+                        position: absolute;
+                        background-color: #fff;
+                        padding: 10px 35px;
+                        transform: translate(-50%,-50%);
+                        top: 50%;
+                        left: 50%;
+                        font-size: 26px;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+  
+}

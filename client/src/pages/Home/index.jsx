@@ -2,6 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Toaster } from 'react-hot-toast';
 import "./index.scss"
+import Header from "../../components/Header";
+import Categories from "../../components/Categories";
 const Home = () => {
   return (
     <>
@@ -9,7 +11,8 @@ const Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-        
+        <Header/>
+        <Categories/>
     </>
   );
 };

@@ -68,6 +68,9 @@ nav{
         display: none;
         .container{
             .logo{
+                display: flex;
+                justify-content: space-between;
+                padding: 30px 0;
                 .link{
                     font-size: 24px;
                     font-weight: 800;
@@ -75,24 +78,20 @@ nav{
                         color: #ff0000;
                     }
                 }
-            }
-            .pages{
-                .page-lists{
-                    
-                    .list{
-                        .link{
-                            display: inline-block;
-                            padding: 15px 10px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        }
-                    }
+                .nav-btn{
+                    background-color: transparent;
+                    border: none;
+                    font-size: 18px;
+                    margin-left: 20px;
                 }
                 .icons{
                     .icon-btn{
                         margin: 0 10px;
                         background-color: transparent;
                         border: none;
+                        .link{
+                            font-size: 16px;
+                        }
                     }
                     .basket-icon{
                         position: relative;
@@ -118,15 +117,50 @@ nav{
                     }
                 }
             }
+           
         }
         #side-nav{
             width: 50%;
-            border: 1px solid;
             height: 100vh;
             position: fixed;
             right: 0;
             top: 0;
             z-index: 11;
+            width: 0;
+            transition: 300ms;
+            overflow: hidden;
+            background-color: #fff;
+            opacity: 0.9;
+            &.active{
+                width: 60%;
+            }
+            .icon-container{
+                display: block;
+                text-align: end;
+            }
+            .close-btn{
+                background-color: transparent;
+                border: none;
+                text-align: end;
+                font-size: 24px;
+                padding: 10px;
+            }
+            .pages{
+                text-align: end;
+                .page-lists{
+                    
+                    .list{
+                        .link{
+                            display: block;
+                            padding: 15px 10px;
+                            font-size: 14px;
+                            font-weight: 500;
+                            border-bottom: 1px solid #B5AEC4;
+                        }
+                    }
+                }
+              
+            }
         }
     }
    
